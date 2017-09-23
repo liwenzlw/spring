@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Aliasing a bean outside the bean definition -->
+    <alias name="car" alias="carAliasOut"/>
+    <!-- Aliasing a bean inside the bean definition -->
+    <bean id="car" class="section3_Bean_overview.material.Car" name="carAliasIn">
+        <!-- collaborators and configuration for this bean go here -->
+        <property name="engineer" value="8缸"/>
+        <property name="seatCount" value="4"/>
+    </bean>
+    <!-- more bean definitions go here -->
+</beans>

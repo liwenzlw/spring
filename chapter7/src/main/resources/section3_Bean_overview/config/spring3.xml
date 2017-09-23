@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 1.Instantiation with a constructor -->
+    <bean id="carConstructor" class="section3_Bean_overview.material.Car"/>
+
+    <!-- 2.Instantiation with a static factory method -->
+    <bean id="clientService" class="section3_Bean_overview.material.ClientService" factory-method="createInstance"/>
+
+    <!-- 3.Instantiation using an instance factory method-->
+    <bean id="carFactory" class="section3_Bean_overview.material.CarFactory"/>
+    <bean id="carInstanceFactory" factory-bean="carFactory" factory-method="createCarInstance"/>
+</beans>
