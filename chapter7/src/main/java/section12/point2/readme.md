@@ -19,11 +19,3 @@
         operating in 'lite' mode
 
 
-1.Declaring a bean
-
-2.Bean dependancies
-
-3.Receiving lifecycle callbacks
-
-4.specifying bean scope
-

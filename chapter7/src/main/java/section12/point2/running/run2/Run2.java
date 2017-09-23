@@ -2,7 +2,7 @@ package section12.point2.running.run2;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import section12.point2.running.run2.material.AppConfig;
+import section12.point2.running.run2.config.AppConfig;
 import section12.point2.running.run2.material.TransferService;
 
 /**
