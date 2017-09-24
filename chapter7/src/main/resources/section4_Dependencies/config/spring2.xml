@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        -1. Setter-based dependency injection
+    -->
+    <bean id="exampleBean" class="section4_Dependencies.material.ExampleBean1">
+        <!-- setter injection using the nested ref element -->
+        <property name="beanOne">
+            <ref bean="anotherBean"/>
+        </property>
+        <!-- setter injection using the neater ref attribute -->
+        <property name="beanTwo" ref="yetAnotherBean"/>
+        <property name="integerProperty" value="1"/>
+    </bean>
+    <bean id="anotherBean" class="section4_Dependencies.material.AnotherBean"/>
+    <bean id="yetAnotherBean" class="section4_Dependencies.material.YetAnotherBean"/>
+
+    <!--
+        2. In the preceding example, setters are declared to match against the properties specified in the XML file.
+           The following example uses constructor-based DI:
+    -->
+    <bean id="exampleBean2" class="section4_Dependencies.material.ExampleBean1">
+        <!-- constructor injection using the nested ref element -->
+        <constructor-arg>
+            <ref bean="anotherBean"/>
+        </constructor-arg>
+        <!-- constructor injection using the neater ref attribute -->
+        <constructor-arg ref="yetAnotherBean"/>
+        <constructor-arg type="int" value="1"/>
+    </bean>
+</beans>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Constructor argument resolution -->
+
+
+    <!--
+        -1. No potential ambiguity exists, assuming that Bar and Baz classes are not related by inheritance. Thus
+            the following configuration works fine, and you do not need to specify the constructor argument indexes
+            and/or types explicitly in the <constructor-arg/> element.
+    -->
+    <bean id="foo" class="section4_Dependencies.material.Foo">
+        <constructor-arg ref="bar"/>
+        <constructor-arg ref="baz"/>
+    </bean>
+    <bean id="bar" class="section4_Dependencies.material.Bar"/>
+    <bean id="baz" class="section4_Dependencies.material.Baz"/>
+
+    <!--
+        -2. When another bean is referenced, the type is known, and matching can occur (as was the case with
+            the preceding example). When a simple type is used, such as <value>true</value>, Spring cannot
+            determine the type of the value, and so cannot match by type without help. Consider the following class ExampleBean:
+    -->
+    <!--
+        -2.1 In the preceding scenario, the container can use type matching with simple types if you explicitly specify
+             the type of the constructor argument using the type attribute. For example:
+    -->
+    <bean id="exampleBean1" class="section4_Dependencies.material.ExampleBean">
+        <constructor-arg type="int" value="7500000"/>
+        <constructor-arg type="java.lang.String" value="42"/>
+    </bean>
+
+    <!--
+        -2.2 Use the index attribute to specify explicitly the index of constructor arguments. For example:
+        Note:In addition to resolving the ambiguity of multiple simple values, specifying an index resolves ambiguity
+             where a constructor has two arguments of the same type. Note that the index is 0 based.
+    -->
+    <bean id="exampleBean2" class="section4_Dependencies.material.ExampleBean">
+        <constructor-arg index="0" value="7500000"/>
+        <constructor-arg index="1" value="42"/>
+    </bean>
+
+    <!--
+        2.3 You can also use the constructor parameter name for value disambiguation:
+        Note: Keep in mind that to make this work out of the box your code must be compiled with the debug flag
+              enabled so that Spring can look up the parameter name from the constructor. If you can’t compile your
+              code with debug flag (or don’t want to) you can use @ConstructorProperties JDK annotation to explicitly
+              name your constructor arguments. The sample class would then have to look as follows:
+    -->
+    <bean id="exampleBean3" class="section4_Dependencies.material.ExampleBean">
+        <constructor-arg name="years" value="7500000"/>
+        <constructor-arg name="ultimateAnswer" value="42"/>
+    </bean>
+    <!-- more bean definitions go here -->
+</beans>

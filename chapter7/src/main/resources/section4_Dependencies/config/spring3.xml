@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        -1. static factory method dependency injection
+    -->
+    <bean id="exampleBean2" class="section4_Dependencies.material.ExampleBean2" factory-method="createInstance">
+        <constructor-arg ref="anotherBean"/>
+        <constructor-arg ref="yetAnotherBean"/>
+        <constructor-arg type="int" value="1"/>
+    </bean>
+
+    <bean id="anotherBean" class="section4_Dependencies.material.AnotherBean"/>
+    <bean id="yetAnotherBean" class="section4_Dependencies.material.YetAnotherBean"/>
+
+    <!--
+        -2. instance factory method dependency injection
+    -->
+    <bean id="exampleBean3" class="section4_Dependencies.material.ExampleBean3"/>
+    <bean id="exampleBean4" factory-bean="exampleBean3" factory-method="createInstance">
+        <constructor-arg ref="anotherBean"/>
+        <constructor-arg ref="yetAnotherBean"/>
+        <constructor-arg type="int" value="1"/>
+    </bean>
+</beans>
