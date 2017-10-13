@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+    <!--
+        The depends-on attribute in the bean definition can specify both an initialization time dependency
+        and, in the case of singleton beans only, a corresponding destroy time dependency. Dependent
+        beans that define a depends-on relationship with a given bean are destroyed first, prior to the
+        given bean itself being destroyed. Thus depends-on can also control shutdown order.
+    -->
+
+    <bean id="car" class="section4_Dependencies.material.Car" depends-on="engine" init-method="init" destroy-method="destructe"/>
+
+    <bean id="engine" class="section4_Dependencies.material.Engine" init-method="init" destroy-method="destructe"/>
+</beans>

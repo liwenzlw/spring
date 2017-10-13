@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd"
+    default-autowire-candidates="*wheel">
+
+
+
+
+    <bean id="bicycle" class="section4_Dependencies.material.Bicycle" autowire="byType"/>
+    <bean id="autowire.wheel" class="section4_Dependencies.material.Wheel">
+        <property name="description" value="自动装配候选Wheel"/>
+    </bean>
+
+    <bean id="no.autowire.wheel" class="section4_Dependencies.material.Wheel" autowire-candidate="false">
+        <property name="description" value="非自动装配候选Wheel"/>
+    </bean>
+
+</beans>

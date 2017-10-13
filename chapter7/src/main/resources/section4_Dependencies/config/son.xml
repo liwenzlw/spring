@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    @Knowledge
+    Specifying the target bean through the bean attribute of the <ref/> tag is the most general form, and
+    allows creation of a reference to any bean in the same container or parent container, regardless of
+    whether it is in the same XML file.
+
+    Specifying the target bean through the parent attribute creates a reference to a bean that is in a parent
+    container of the current container. The value of the parent attribute may be the same as either the id
+    attribute of the target bean, or one of the values in the name attribute of the target bean, and the target
+    bean must be in a parent container of the current one.
+    -->
+
+
+    <!-- in the child (descendant) context -->
+    <!-- bean name is the same as the parent bean -->
+    <bean id="accountService"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <ref parent="accountService"/> <!-- notice how we refer to the parent bean -->
+        </property>
+        <!-- insert other configuration and dependencies as required here -->
+    </bean>
+</beans>
